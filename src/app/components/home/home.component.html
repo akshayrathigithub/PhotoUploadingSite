@@ -4,20 +4,24 @@
       [ngStyle]="{
         overflow: 'hidden',
         width: '100%',
-        'background-color': item.color,
         height: '100%',
         'grid-area': item.Ind,
         position: 'relative',
         display: 'block'
       }"
     >
-      <div id="PhotoWrapper">
+      <div #Picture [ngStyle]="{display: 'flex',
+        width: getWidth(item.photos.length),
+        height: '100%',
+        position: 'absolute',
+        'flex-direction': 'row',
+        'transition': 'all 0.5 ease-in-out'
+      }">
         <div
-          *ngFor="let photo of photos"
+          *ngFor="let photo of item.photos"
           [ngStyle]="{
             width: '100%',
             height: '100%',
-            'border-radius': '50%',
             'background-color': photo,
             position: 'relative'
           }"

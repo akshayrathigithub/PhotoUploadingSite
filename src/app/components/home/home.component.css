@@ -11,14 +11,6 @@
     grid-template-rows: repeat(18, 5.5%);
     grid-template-columns: repeat(20, 5%);
   }
-  #PhotoWrapper {
-    display: flex;
-    width: 200%;
-    height: 100%;
-    position: absolute;
-    flex-direction: row;
-    transform: translate3d(10%, 0%, 0%);
-  }
 }
 
 /* 
