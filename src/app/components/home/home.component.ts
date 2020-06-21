@@ -25,6 +25,6 @@ export class HomeComponent implements OnInit {
   ];
   photos = ["red", "yellow"];
   constructor() {}
-
+  
   ngOnInit(): void {}
 }
