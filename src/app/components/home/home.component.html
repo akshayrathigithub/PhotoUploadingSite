@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div id="Grid">
+  <ng-container *ngFor="let item of Array">
+    <div
+      [ngStyle]="{
+        'display': 'flex',
+        'flex-direction': 'row',
+        'overflow': 'hidden',
+        'width': '100%',
+        'background-color': item.color,
+        'height': '100%'
+      }"
+    >
+      <div *ngFor="let photo of photos" id="photo"></div>
+    </div>
+  </ng-container>
+</div>
+<!-- 'grid-row-start': 'span '+ item.Ind+4,
+        'grid-column-start': 'span '+ item.Ind+4 -->

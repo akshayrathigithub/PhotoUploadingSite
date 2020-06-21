@@ -4,6 +4,17 @@
 */
 
 @media (min-width: 1281px) {
+    #Grid{
+        display: grid;
+        width: 98vw;
+        height: 100vh;
+        grid-template-rows: repeat(20, 5%);
+        grid-template-columns: repeat(20, 5%);
+    }
+    #photo{
+        width: fit-content;
+        height: fit-content;
+    }
 }
 
 /* 
