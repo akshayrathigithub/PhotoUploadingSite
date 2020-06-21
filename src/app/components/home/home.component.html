@@ -10,13 +10,10 @@
         display: 'block'
       }"
     >
-      <div #Picture [ngStyle]="{display: 'flex',
-        width: getWidth(item.photos.length),
-        height: '100%',
-        position: 'absolute',
-        'flex-direction': 'row',
-        'transition': 'all 0.5 ease-in-out'
-      }">
+      <div
+        #Picture
+        [ngStyle]="getDimension(item.photos.length)"
+      >
         <div
           *ngFor="let photo of item.photos"
           [ngStyle]="{
