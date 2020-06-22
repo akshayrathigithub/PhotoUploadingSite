@@ -32,29 +32,23 @@ export class HomeComponent implements OnInit {
       } else {
         this.Repeat(Num + 1)
         let randomPhoto = Math.floor(Math.random() * 10)
-        console.log(randomPhoto)
-        let Dir = this.linkRefs._results[randomPhoto].nativeElement.style.transform.replace(
-          "translate",
-          ""
-        )
+        let Dir = this.linkRefs._results[randomPhoto].nativeElement.style.transform.replace("translate","")
+        const totalChildren = this.linkRefs._results[randomPhoto].nativeElement.children.length
+        let limit = (100-(100/totalChildren))*(-1)
         let Proposed = ""
         if (Dir[0] === "Y") {
-          let PresentY = Dir.replace('Y(','').replace('%)','')
-          if (PresentY === "0") {
-            Proposed = "translateY(-50%)"
-          } else if (PresentY === "-50") {
-            Proposed = "translateY(0%)"
+          let PresentY = parseInt(Dir.replace('Y(','').replace('%)',''))
+          if (PresentY === limit) {
+            Proposed = `translateY(0%)`
           } else {
-            Proposed = "translateY(-100%)"
+            Proposed = `translateY(${PresentY-(100/totalChildren)}%)`
           }
         }else{
-          let PresentX = Dir.replace('X(','').replace('%)','')
-          if (PresentX === "0") {
-            Proposed = "translateX(-50%)"
-          } else if (PresentX === "-50") {
-            Proposed = "translateX(0%)"
+          let PresentX = parseInt(Dir.replace('X(','').replace('%)',''))
+          if (PresentX === limit) {
+            Proposed = `translateX(0%)`
           } else {
-            Proposed = "translateX(-100%)"
+            Proposed = `translateX(${PresentX-(100/totalChildren)}%)`
           }
         }
         this.renderer.setStyle(
