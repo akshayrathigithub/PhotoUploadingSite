@@ -12,7 +12,16 @@
     >
       <div
         #Picture
-        [ngStyle]="getDimension(item.photos.length)"
+        [ngStyle]="{
+          display: 'flex',
+          width: (item.photos.length * 100) + '%',
+          height: '100%',
+          position: 'absolute',
+          'flex-direction': 'row',
+          transform: 'translateX(0%)',
+          transition: 'all 1.5s ease-in-out'
+        }"
+        *ngIf="item.photos.length >= 3; else SecondDiv"
       >
         <div
           *ngFor="let photo of item.photos"
@@ -24,6 +33,30 @@
           }"
         ></div>
       </div>
+      <ng-template #SecondDiv>
+        <div
+          #Picture
+          [ngStyle]="{
+            display: 'flex',
+            width: '100%',
+            height: (item.photos.length * 100) + '%',
+            position: 'absolute',
+            'flex-direction': 'column',
+            transform: 'translateY(0%)',
+            transition: 'all 1.5s ease-in-out'
+          }"
+        >
+          <div
+            *ngFor="let photo of item.photos"
+            [ngStyle]="{
+              width: '100%',
+              height: '100%',
+              'background-color': photo,
+              position: 'relative'
+            }"
+          ></div>
+        </div>
+      </ng-template>
     </div>
   </ng-container>
 </div>

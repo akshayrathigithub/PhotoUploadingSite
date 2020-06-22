@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
-  ViewChildren,
-  Renderer2,
-} from "@angular/core"
+import { Component, OnInit, ViewEncapsulation, ViewChildren, Renderer2 } from "@angular/core"
 
 @Component({
   selector: "app-home",
@@ -38,6 +32,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.Repeat(Num + 1)
         let randomPhoto = Math.floor(Math.random() * 10)
+        console.log(randomPhoto)
         let Dir = this.linkRefs._results[randomPhoto].nativeElement.style.transform.replace(
           "translate",
           ""
@@ -62,7 +57,6 @@ export class HomeComponent implements OnInit {
             Proposed = "translateX(-100%)"
           }
         }
-        console.log(this.linkRefs._results[randomPhoto].nativeElement)
         this.renderer.setStyle(
           this.linkRefs._results[randomPhoto].nativeElement,
           "transform",
@@ -73,30 +67,5 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.Repeat(0)
-  }
-  getDimension(length: number) {
-    console.log(length)
-    let randomInt = Math.floor(Math.random() * 10)
-    if (randomInt % 2 === 0) {
-      return {
-        display: 'flex',
-        width: (length * 100) + '%',
-        height: '100%',
-        position: 'absolute',
-        'flex-direction': 'row',
-        transform: 'translateX(0%)',
-        transition: 'all 1.5s ease-in-out'
-      }
-    } else {
-      return {
-        display: 'flex',
-        width: '100%',
-        height: (length * 100) + '%',
-        position: 'absolute',
-        'flex-direction': 'column',
-        transform: 'translateY(0%)',
-        transition: 'all 1.5s ease-in-out'
-      }
-    }
   }
 }
