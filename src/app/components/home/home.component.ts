@@ -32,14 +32,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
     { Ind: "7/15/13/18", photos: ["#911e7e", "#3f16d9", "#0f525f", "#ac7c0a", "#b4c086", "#c9d730", "#30cc49"] },
     { Ind: "7/18/13/21", photos: ["#1350ce", "#10e5b1", "#fff4d7", "#cb2582", "#ce00be"] },
   ]
+
   constructor(private renderer: Renderer2) {}
+
+  getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
   RandomPhotoSlider(Num: number) {
     setTimeout(() => {
       if (Num === 60) {
         console.log("Completed")
       } else {
         this.RandomPhotoSlider(Num + 1)
-        let randomPhoto = Math.floor(Math.random() * 10)
+        let randomPhoto = this.getRandomInt(0, 14)
         if (randomPhoto === this.currentPic) {
           null
         } else {
@@ -74,6 +82,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     }, 4000)
   }
+
   VisibleTimeout(ID: number) {
     setTimeout(() => {
       if (ID === 14) {
@@ -88,11 +97,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     }, 1000)
   }
+
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.VisibleTimeout(0)
   }
+  
   QuickSlider() {
     let Dir = this.linkRefs._results[this.currentPic].nativeElement.style.transform.replace(
       "translate",
