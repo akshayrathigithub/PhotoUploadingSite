@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation, ViewChildren, Renderer2 } from "@angular/core"
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ViewChildren,
+  Renderer2,
+  AfterViewInit,
+} from "@angular/core"
 
 @Component({
   selector: "app-home",
@@ -6,34 +13,33 @@ import { Component, OnInit, ViewEncapsulation, ViewChildren, Renderer2 } from "@
   styleUrls: ["./home.component.css"],
   encapsulation: ViewEncapsulation.None,
 })
-export class HomeComponent implements OnInit {
-  @ViewChildren("Picture") linkRefs
+export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChildren("Picture") linkRefs: { _results: { nativeElement: any }[] }
   currentPic: number
   Array = [
-    { Ind: "1/1/6/4", photos: ["rgba(136, 16, 16, 0.452)", "#7fb411"] },
-    { Ind: "1/4/6/7", photos: ["#000121", "#0023b8"] },
-    { Ind: "1/7/9/11", photos: ["#eb00a5", "#3b8c2a"] },
-    { Ind: "1/11/9/15", photos: ["#6a4389", "#986b53"] },
-    { Ind: "1/15/7/21", photos: ["#cfcd83", "#f50422"] },
-    { Ind: "6/1/14/7", photos: ["#8ad69f", "#983f7a"] },
-    { Ind: "9/7/19/12", photos: ["#177857", "#ea24a3"] },
-    { Ind: "9/12/14/15", photos: ["#ab4653", "#3b8c2a", "#986b53"] },
+    { Ind: "1/1/6/4", photos: ["#63b598", "#ce7d78", "#ea9e70", "#a48a9e", "#c6e1e8"] },
+    { Ind: "1/4/6/7", photos: ["#f205e6" ,"#1c0365" ,"#14a9ad" ,"#4ca2f9" ,"#a4e43f"] },
+    { Ind: "1/7/9/11", photos: ["#79806e" ,"#61da5e" ,"#cd2f00"] },
+    { Ind: "1/11/9/15", photos: ["#2f3f94" ,"#2f7b99" ,"#da967d" ,"#34891f" ,"#b0d87b" ,"#ca4751" ,"#7e50a8"] },
+    { Ind: "1/15/7/21", photos: ["#c4d647" ,"#e0eeb8" ,"#11dec1" ,"#289812" ] },
+    { Ind: "6/1/14/7", photos: ["#05d371", "#5426e0", "#4834d0"] },
+    { Ind: "9/7/19/12", photos: ["#615af0", "#21538e", "#89d534", "#d36647"] },
+    { Ind: "9/12/14/15", photos: ["#ab4653", "#67eb4b", "#986b53"] },
     { Ind: "14/12/19/15", photos: ["#4e67cd", "#3b8c2a", "#986b53", "#f50422", "#983f7a"] },
     { Ind: "14/1/19/4", photos: ["#c63b4e", "#983f7a", "#ea24a3"] },
-    { Ind: "14/4/19/7", photos: ["#c9aea8", "#3b8c2a", "#f50422", "#983f7a"] },
+    { Ind: "14/4/19/7", photos: ["#93f2d7", "#9b5c2a", "#15b9ee"] },
     { Ind: "13/15/19/21", photos: ["#df77b9", "#986b53", "#f50422", "#983f7a", "#ea24a3"] },
-    { Ind: "7/15/13/18", photos: ["#1ea49c", "#f50422", "#983f7a", "#ea24a3"] },
-    { Ind: "7/18/13/21", photos: ["#4a1bac", "#7fb411", "#f50422", "#ea24a3"] },
+    { Ind: "7/15/13/18", photos: ["#911e7e", "#3f16d9", "#0f525f", "#ac7c0a", "#b4c086", "#c9d730", "#30cc49"] },
+    { Ind: "7/18/13/21", photos: ["#1350ce", "#10e5b1", "#fff4d7", "#cb2582", "#ce00be"] },
   ]
   constructor(private renderer: Renderer2) {}
   RandomPhotoSlider(Num: number) {
     setTimeout(() => {
-      if (Num === 20) {
+      if (Num === 60) {
         console.log("Completed")
       } else {
         this.RandomPhotoSlider(Num + 1)
         let randomPhoto = Math.floor(Math.random() * 10)
-        randomPhoto = 6
         if (randomPhoto === this.currentPic) {
           null
         } else {
@@ -68,10 +74,25 @@ export class HomeComponent implements OnInit {
       }
     }, 4000)
   }
-  ngOnInit(): void {
-    this.RandomPhotoSlider(0)
+  VisibleTimeout(ID: number) {
+    setTimeout(() => {
+      if (ID === 14) {
+        this.RandomPhotoSlider(0)
+      } else {
+        this.renderer.setStyle(
+          this.linkRefs._results[ID].nativeElement.parentElement,
+          "opacity",
+          "1"
+        )
+        this.VisibleTimeout(ID + 1)
+      }
+    }, 1000)
   }
+  ngOnInit(): void {}
 
+  ngAfterViewInit(): void {
+    this.VisibleTimeout(0)
+  }
   QuickSlider() {
     let Dir = this.linkRefs._results[this.currentPic].nativeElement.style.transform.replace(
       "translate",
@@ -99,7 +120,6 @@ export class HomeComponent implements OnInit {
         if (currVal <= Limit || this.currentPic === -1) {
           null
         } else {
-          console.log(this.currentPic)
           if (Type === "X" && this.currentPic >= 0) {
             this.renderer.setStyle(
               this.linkRefs._results[this.currentPic].nativeElement,
@@ -107,8 +127,12 @@ export class HomeComponent implements OnInit {
               `translateX(${value}%)`
             )
           } else {
-            if (this.currentPic >= 0){
-              this.renderer.setStyle(this.linkRefs._results[this.currentPic].nativeElement,"transform",`translateY(${value}%)`)
+            if (this.currentPic >= 0) {
+              this.renderer.setStyle(
+                this.linkRefs._results[this.currentPic].nativeElement,
+                "transform",
+                `translateY(${value}%)`
+              )
             }
           }
           quickTimeout(Type, Limit, TC, value)
@@ -139,6 +163,5 @@ export class HomeComponent implements OnInit {
       }
       this.currentPic = -1
     }
-    console.log(this.currentPic)
   }
 }
