@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.RandomPhotoSlider(Num + 1)
         let randomPhoto = Math.floor(Math.random() * 10)
+        randomPhoto = 6
         if (randomPhoto === this.currentPic) {
           null
         } else {
@@ -78,7 +79,6 @@ export class HomeComponent implements OnInit {
     )
     const totalChildren = this.linkRefs._results[this.currentPic].nativeElement.children.length
     let limit = Math.floor(100 - 100 / totalChildren) * -1
-    let Proposed = ''
     if (Dir[0] === "Y") {
       this.renderer.setStyle(
         this.linkRefs._results[this.currentPic].nativeElement,
@@ -92,28 +92,28 @@ export class HomeComponent implements OnInit {
         "translateX(0%)"
       )
     }
-    const quickTimeout = (Type: string, Limit: number, TC: number, currVal: number)=>{
+    const quickTimeout = (Type: string, Limit: number, TC: number, currVal: number) => {
       setTimeout(() => {
         let value = currVal - 100 / TC
-        if(currVal === Limit){
+        console.log(limit, currVal)
+        if (currVal <= Limit || this.currentPic === -1) {
           null
-        }else{
-          if(Type === 'X'){
+        } else {
+          console.log(this.currentPic)
+          if (Type === "X" && this.currentPic >= 0) {
             this.renderer.setStyle(
               this.linkRefs._results[this.currentPic].nativeElement,
-            "transform",
-            `translateX(${value}%)`
+              "transform",
+              `translateX(${value}%)`
             )
-          }else{
-          this.renderer.setStyle(
-            this.linkRefs._results[this.currentPic].nativeElement,
-            "transform",
-            `translateY(${value}%)`
-            )
+          } else {
+            if (this.currentPic >= 0){
+              this.renderer.setStyle(this.linkRefs._results[this.currentPic].nativeElement,"transform",`translateY(${value}%)`)
+            }
           }
           quickTimeout(Type, Limit, TC, value)
         }
-      }, 1600);
+      }, 1600)
     }
     quickTimeout(Dir[0], limit, totalChildren, 0)
   }
@@ -123,7 +123,22 @@ export class HomeComponent implements OnInit {
       this.currentPic = ID
       this.QuickSlider()
     } else {
+      let Dir = this.linkRefs._results[ID].nativeElement.style.transform.replace("translate", "")
+      if (Dir[0] === "Y") {
+        this.renderer.setStyle(
+          this.linkRefs._results[ID].nativeElement,
+          "transform",
+          "translateY(0%)"
+        )
+      } else {
+        this.renderer.setStyle(
+          this.linkRefs._results[ID].nativeElement,
+          "transform",
+          "translateX(0%)"
+        )
+      }
       this.currentPic = -1
     }
+    console.log(this.currentPic)
   }
 }
