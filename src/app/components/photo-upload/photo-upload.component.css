@@ -14,14 +14,32 @@
   }
   #DropDownWrapper {
     width: 70%;
-    height: 35%;
-    border-radius: 25px;
+    height: 55%; /*35% */
+    border-radius: 25px; 
     background-color: #fff;
     padding: 35px;
+    transition: height 0.8s ease-in-out;
+  }
+  /* #DropDownWrapper:hover{
+    height: 55%;
+  }
+  #DropDownWrapper:hover .fa-images{
+    font-size: 85px;
+  }
+  #DropDownWrapper:hover #ProgressBarWrapper{
+    height: 35%;
+  } */
+  #ProgressBarWrapper {
+    width: 100%;
+    height: 35%;
+    background-color: #c1cfddcc;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: height 0.8s ease-in-out;
   }
   #DropDown {
     width: 100%;
-    height: 100%;
+    height: 16rem;
     border: 3px dashed black;
     border-radius: 15px;
     display: flex;
@@ -29,19 +47,20 @@
     align-items: center;
     flex-direction: column;
   }
-  #PreviewWrapper {
+  /* #PreviewWrapper {
     width: 70%;
     height: 45%;
     border-radius: 15px;
-  }
+  } */
   #Image {
     display: block;
-    margin-top: 50px;
     margin-bottom: 15px;
+    transition: all 0.8s ease-in-out;
   }
   .fa-images {
     font-size: 65px;
     color: red;
+    transition: font-size 0.8s ease-in-out;
   }
   #Text {
     width: 50%;
