@@ -1,6 +1,6 @@
 <div id="PhotoWrapper">
     <div id="DropDownWrapper">
-        <div id="DropDown">
+        <div id="DropDown" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" >
             <div id="Image"><i class="fas fa-images"></i></div>
             <div id="Text">
                 <p>Drop your images here, or <span id="word">browse</span></p>
@@ -27,5 +27,7 @@
             <div id="Footer"></div>
         </div>
     </div>
-    <div id="PreviewWrapper"></div>
+    <div id="PreviewWrapper">
+        <div id="test" draggable="true" (dragstart)="onDragStart($event)" (dragend)="onDragEnd($event)"></div>
+    </div>
 </div>

@@ -11,5 +11,19 @@ export class PhotoUploadComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onDragStart(e: Event){
+    console.log("drag started")
+  }
+  onDrop(e){
+    e.preventDefault()
+    console.log(e.dataTransfer.items)
+  }
+  onDragEnd(e: Event){
+    console.log("drag Ended")
+  }
+  onDragOver(e: Event){
+    console.log("dragged")
+    e.preventDefault()
+    e.stopPropagation()
+  }
 }
