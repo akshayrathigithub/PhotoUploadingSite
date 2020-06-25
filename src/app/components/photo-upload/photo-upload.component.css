@@ -4,7 +4,7 @@
 */
 
 @media (min-width: 1281px) {
-  #PhotoWrapper {
+  .PhotoWrapper {
     width: 100%;
     height: 100%;
     background-color: #e9f3fe;
@@ -12,7 +12,7 @@
     align-items: center;
     flex-direction: column;
   }
-  #DropDownWrapper {
+  .DropDownWrapper {
     width: 70%;
     height: 35%;
     border-radius: 25px;
@@ -20,24 +20,24 @@
     padding: 35px;
     transition: height 0.8s ease-in-out;
   }
-  /* #DropDownWrapper:hover{
+  .DropDownWrapperHover{
     height: 50%;
   }
-  #DropDownWrapper:hover .fa-images{
+  .Hover{
     font-size: 85px;
   }
-  #DropDownWrapper:hover #ProgressBarWrapper{
+  .ProgressBarWrapperHover{
     height: 35%;
     padding: 10px 15px;
   }
-  #DropDownWrapper:hover #Header{
+  .HeaderHover{
     display: flex;
   }
-  #DropDownWrapper:hover #Footer{
+  .FooterHover{
     width: 90%;
-  } */
+  }
 
-  #DropDown {
+  .DropDown {
     width: 100%;
     height: 16rem;
     border: 3px dashed black;
@@ -47,13 +47,13 @@
     align-items: center;
     flex-direction: column;
   }
-  #PreviewWrapper {
+  .PreviewWrapper {
     width: 70%;
     height: 45%;
     background-color: #000;
     border-radius: 15px;
   }
-  #Image {
+  .Image {
     display: block;
     margin-bottom: 15px;
     transition: all 0.8s ease-in-out;
@@ -63,7 +63,7 @@
     color: red;
     transition: font-size 0.8s ease-in-out;
   }
-  #Text {
+  .Text {
     width: 50%;
     height: auto;
     display: inline-block;
@@ -72,19 +72,19 @@
     text-align: center;
     margin-bottom: 8px;
   }
-  #word {
+  .word {
     color: blue;
     font-weight: 600;
     cursor: pointer;
   }
-  #word:hover {
+  .word:hover {
     text-decoration: underline;
   }
-  #Formats {
+  .Formats {
     font-size: 15px;
     color: #000;
   }
-  #ProgressBarWrapper {
+  .ProgressBarWrapper {
     width: 100%;
     height: 0%;
     background-color: #c1cfddcc;
@@ -93,7 +93,7 @@
     transition: all 0.8s ease-in-out;
     padding: 0px;
   }
-  #Header {
+  .Header {
     width: 100%;
     height: 80%;
     display: none;
@@ -103,24 +103,24 @@
     width: 50%;
     height: 100%;
   }
-  #Upload {
+  .Upload {
     width: 100%;
     font-size: 16px;
     color: #000;
     font-weight: 600;
     margin: 25px 0px 0px 20px;
   }
-  #Status {
+  .Status {
     color: #000;
     font-size: 12px;
     font-weight: 400;
     margin: 5px 0px 0px 25px;
   }
-  #FinalDiv {
+  .FinalDiv {
     width: 50%;
     height: 100%;
   }
-  #BtnGroup {
+  .BtnGroup {
     display: flex;
     flex-direction: row;
     margin: 30px 0px 0px 60%;
@@ -152,7 +152,7 @@
     color: red;
     opacity: 1;
   }
-  #Footer{
+  .Footer{
     width: 0%;
     height: 4px;
     background-color: red;
@@ -160,7 +160,7 @@
     margin-left: 15px;
     transition: all 0.8s ease-in-out 1s;
   }
-  #test{
+  .test{
     width: 5rem;
     height: 5rem;
     border-radius: 5px;

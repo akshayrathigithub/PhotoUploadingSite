@@ -1,33 +1,33 @@
-<div id="PhotoWrapper">
-    <div id="DropDownWrapper">
-        <div id="DropDown" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" >
-            <div id="Image"><i class="fas fa-images"></i></div>
-            <div id="Text">
-                <p>Drop your images here, or <span id="word">browse</span></p>
+<div class="PhotoWrapper">
+    <div [class]="Active ? 'DropDownWrapperHover' : 'DropDownWrapper'">
+        <div class="DropDown" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)" >
+            <div class="Image"><i class="fas fa-images"></i></div>
+            <div class="Text">
+                <p>Drop your images here, or <span class="word">browse</span></p>
             </div>
-            <div id="Formats">
+            <div class="Formats">
                 <p>Supports: JPG, PNG</p>
             </div>
         </div>
-        <div id="ProgressBarWrapper">
-            <div id="Header">
-                <div id="InitialDiv">
-                    <div id="Upload"><p>Uploading...</p></div>
-                    <div id="Status">
+        <div [class]="Active ? 'ProgressBarWrapperHover' : 'ProgressBarWrapper'">
+            <div [class]="Active ? 'HeaderHover' : 'Header'" class="">
+                <div class="InitialDiv">
+                    <div class="Upload"><p>Uploading...</p></div>
+                    <div class="Status">
                         <p><span>50%</span> : <span>8</span> seconds left</p>
                     </div>
                 </div>
-                <div id="FinalDiv">
-                    <div id="BtnGroup">
+                <div class="FinalDiv">
+                    <div class="BtnGroup">
                         <div class="Btn play-pause"><i class="fas fa-play"></i></div>
                         <div class="Btn cancel"><i class="fas fa-times"></i></div>
                     </div>
                 </div>
             </div>
-            <div id="Footer"></div>
+            <div [class]="Active ? 'FooterHover' : 'Footer'"></div>
         </div>
     </div>
-    <div id="PreviewWrapper">
-        <div id="test" draggable="true" (dragstart)="onDragStart($event)" (dragend)="onDragEnd($event)"></div>
+    <div class="PreviewWrapper">
+        <div class="test" draggable="true" (dragstart)="onDragStart($event)" (dragend)="onDragEnd($event)"></div>
     </div>
 </div>
