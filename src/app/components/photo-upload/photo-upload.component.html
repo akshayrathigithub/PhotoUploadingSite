@@ -1,5 +1,5 @@
 <div class="PhotoWrapper">
-    <div [class]="Active ? 'DropDownWrapperHover' : 'DropDownWrapper'">
+    <div [class]="Active ? 'DropDownWrapper DropDownWrapperHover' : 'DropDownWrapper'">
         <div class="DropDown" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)" >
             <div class="Image"><i class="fas fa-images"></i></div>
             <div class="Text">
@@ -9,8 +9,8 @@
                 <p>Supports: JPG, PNG</p>
             </div>
         </div>
-        <div [class]="Active ? 'ProgressBarWrapperHover' : 'ProgressBarWrapper'">
-            <div [class]="Active ? 'HeaderHover' : 'Header'" class="">
+        <div [class]="Active ? 'ProgressBarWrapper ProgressBarWrapperHover' : 'ProgressBarWrapper'">
+            <div [class]="Active ? 'Header HeaderHover' : 'Header'">
                 <div class="InitialDiv">
                     <div class="Upload"><p>Uploading...</p></div>
                     <div class="Status">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div [class]="Active ? 'FooterHover' : 'Footer'"></div>
+            <div [class]="Active ? 'Footer FooterHover' : 'Footer'"></div>
         </div>
     </div>
     <div class="PreviewWrapper">
