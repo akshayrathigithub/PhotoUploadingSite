@@ -71,10 +71,10 @@
   </div>
   <div class="PreviewWrapper">
     <div
-      class="test"
+      class="Photos"
       draggable="true"
       (dragstart)="onDragStart($event)"
-      (dragend)="onDragEnd($event)"
+      (dragend)="onDragEnd($event)" *ngFor="let item of [].constructor(12)"
     ></div>
   </div>
 </div>

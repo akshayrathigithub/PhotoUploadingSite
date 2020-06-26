@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PhotoUploadComponent implements OnInit {
   Dragged: boolean = false
   Dropped: boolean = false
+  
   constructor() { }
 
   ngOnInit(): void {
