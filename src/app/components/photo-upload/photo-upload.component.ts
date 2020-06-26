@@ -25,12 +25,11 @@ export class PhotoUploadComponent implements OnInit {
   }
   onDragOver(e: Event){
     console.log("dragged")
-    this.Active = true
     e.preventDefault()
     e.stopPropagation()
   }
   onDragEnter(e){
-    this.Active = false
+    this.Active = true
     console.log("drag Entered")
   }
   onDragLeave(e){

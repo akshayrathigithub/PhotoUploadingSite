@@ -15,10 +15,21 @@
   .DropDownWrapper {
     width: 70%;
     height: 35%;
+    position: relative;
     border-radius: 25px;
     background-color: #fff;
     padding: 35px;
     transition: height 0.8s ease-in-out;
+    z-index: 0;
+  }
+  #dragNdrop{
+    width: 95%;
+    height: 16rem;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 25px;
+    opacity: 1;
+    z-index: 1;
   }
   .DropDownWrapperHover{
     height: 50%;

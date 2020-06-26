@@ -1,6 +1,7 @@
 <div class="PhotoWrapper">
     <div [class]="Active ? 'DropDownWrapper DropDownWrapperHover' : 'DropDownWrapper'">
-        <div class="DropDown" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)" >
+        <div id="dragNdrop" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)"></div>
+        <div class="DropDown" >
             <div class="Image"><i class="fas fa-images"></i></div>
             <div class="Text">
                 <p>Drop your images here, or <span class="word">browse</span></p>
