@@ -28,26 +28,11 @@
     position: absolute;
     background-color: transparent;
     border-radius: 25px;
-    opacity: 1;
     z-index: 1;
   }
   .DropDownWrapperHover{
     height: 50%;
   }
-  .Hover{
-    font-size: 85px;
-  }
-  .ProgressBarWrapperHover{
-    height: 35%;
-    padding: 10px 15px;
-  }
-  .HeaderHover{
-    display: flex;
-  }
-  .FooterHover{
-    width: 90%;
-  }
-
   .DropDown {
     width: 100%;
     height: 16rem;
@@ -69,11 +54,6 @@
     margin-bottom: 15px;
     transition: all 0.8s ease-in-out;
   }
-  .fa-images {
-    font-size: 65px;
-    color: red;
-    transition: font-size 0.8s ease-in-out;
-  }
   .Text {
     width: 50%;
     height: auto;
@@ -94,21 +74,6 @@
   .Formats {
     font-size: 15px;
     color: #000;
-  }
-  .ProgressBarWrapper {
-    width: 100%;
-    height: 0%;
-    background-color: #c1cfddcc;
-    margin-top: 20px;
-    border-radius: 8px;
-    transition: all 0.8s ease-in-out;
-    padding: 0px;
-  }
-  .Header {
-    width: 100%;
-    height: 80%;
-    display: none;
-    flex-direction: row;
   }
   #InitialDiv {
     width: 50%;
@@ -162,14 +127,6 @@
     font-size: 14px;
     color: red;
     opacity: 1;
-  }
-  .Footer{
-    width: 0%;
-    height: 4px;
-    background-color: red;
-    border-radius: 1.5px;
-    margin-left: 15px;
-    transition: all 0.8s ease-in-out 1s;
   }
   .test{
     width: 5rem;

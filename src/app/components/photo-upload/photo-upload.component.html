@@ -1,34 +1,80 @@
 <div class="PhotoWrapper">
-    <div [class]="Active ? 'DropDownWrapper DropDownWrapperHover' : 'DropDownWrapper'">
-        <div id="dragNdrop" (drop)="onDrop($event)" (dragover) = "onDragOver($event)" (dragenter)="onDragEnter($event)" (dragleave)="onDragLeave($event)"></div>
-        <div class="DropDown" >
-            <div class="Image"><i class="fas fa-images"></i></div>
-            <div class="Text">
-                <p>Drop your images here, or <span class="word">browse</span></p>
-            </div>
-            <div class="Formats">
-                <p>Supports: JPG, PNG</p>
-            </div>
-        </div>
-        <div [class]="Active ? 'ProgressBarWrapper ProgressBarWrapperHover' : 'ProgressBarWrapper'">
-            <div [class]="Active ? 'Header HeaderHover' : 'Header'">
-                <div class="InitialDiv">
-                    <div class="Upload"><p>Uploading...</p></div>
-                    <div class="Status">
-                        <p><span>50%</span> : <span>8</span> seconds left</p>
-                    </div>
-                </div>
-                <div class="FinalDiv">
-                    <div class="BtnGroup">
-                        <div class="Btn play-pause"><i class="fas fa-play"></i></div>
-                        <div class="Btn cancel"><i class="fas fa-times"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div [class]="Active ? 'Footer FooterHover' : 'Footer'"></div>
-        </div>
+  <div [class]="Dropped ? 'DropDownWrapper DropDownWrapperHover' : 'DropDownWrapper'">
+    <div
+      id="dragNdrop"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (dragenter)="onDragEnter($event)"
+      (dragleave)="onDragLeave($event)"
+    ></div>
+    <div class="DropDown">
+      <div class="Image">
+        <i
+          class="fas fa-images"
+          [ngStyle]="{
+            'font-size': Dragged ? '85px' : '65px',
+            color: 'red',
+            transition: 'font-size 0.8s ease-in-out'
+          }"
+        ></i>
+      </div>
+      <div class="Text">
+        <p>Drop your images here, or <span class="word">browse</span></p>
+      </div>
+      <div class="Formats">
+        <p>Supports: JPG, PNG</p>
+      </div>
     </div>
-    <div class="PreviewWrapper">
-        <div class="test" draggable="true" (dragstart)="onDragStart($event)" (dragend)="onDragEnd($event)"></div>
+    <div
+      [ngStyle]="{
+        width: '100%',
+        height: Dropped ? '35%' : '0%',
+        'background-color': '#c1cfddcc',
+        'margin-top': '20px',
+        'border-radius': '8px',
+        transition: 'all 0.8s ease-in-out',
+        padding: Dropped ? '10px 15px' : '0px'
+      }"
+    >
+      <div
+        [ngStyle]="{
+          width: '100%',
+          height: '80%',
+          display: Dropped ? 'flex' : 'none',
+          'flex-direction': 'row'
+        }"
+      >
+        <div class="InitialDiv">
+          <div class="Upload"><p>Uploading...</p></div>
+          <div class="Status">
+            <p><span>50%</span> : <span>8</span> seconds left</p>
+          </div>
+        </div>
+        <div class="FinalDiv">
+          <div class="BtnGroup">
+            <div class="Btn play-pause"><i class="fas fa-play"></i></div>
+            <div class="Btn cancel"><i class="fas fa-times"></i></div>
+          </div>
+        </div>
+      </div>
+      <div
+        [ngStyle]="{
+          width: Dropped ? '90%' : '0%',
+          height: '4px',
+          'background-color': 'red',
+          'border-radius': '1.5px',
+          'margin-left': '15px',
+          transition: 'all 0.8s ease-in-out 1s'
+        }"
+      ></div>
     </div>
+  </div>
+  <div class="PreviewWrapper">
+    <div
+      class="test"
+      draggable="true"
+      (dragstart)="onDragStart($event)"
+      (dragend)="onDragEnd($event)"
+    ></div>
+  </div>
 </div>

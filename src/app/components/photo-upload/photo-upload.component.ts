@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./photo-upload.component.css']
 })
 export class PhotoUploadComponent implements OnInit {
-  Active: boolean = false
+  Dragged: boolean = false
+  Dropped: boolean = false
   constructor() { }
 
   ngOnInit(): void {
@@ -17,6 +18,8 @@ export class PhotoUploadComponent implements OnInit {
   }
   onDrop(e){
     e.preventDefault()
+    this.Dropped = true
+    this.Dragged = false
     console.log("Drop")
   }
   onDragEnd(e: Event){
@@ -29,11 +32,11 @@ export class PhotoUploadComponent implements OnInit {
     e.stopPropagation()
   }
   onDragEnter(e){
-    this.Active = true
+    this.Dragged = true
     console.log("drag Entered")
   }
   onDragLeave(e){
-    this.Active = false
+    this.Dragged = false
     console.log("drag Left")
   }
 }
