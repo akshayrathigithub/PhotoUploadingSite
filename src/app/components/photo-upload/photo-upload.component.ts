@@ -20,7 +20,6 @@ export class PhotoUploadComponent implements OnInit {
   onDragStart(e) {
     this.DraggedPhoto = e.target
     this.DraggedPhotoProperty = e.target.style.backgroundColor
-    // this.renderer.setStyle(e.target, 'opacity', '0.5')
   }
   onDrop(e) {
     e.preventDefault()

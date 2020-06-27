@@ -37,6 +37,7 @@
     left: 61%;
     cursor: pointer;
     opacity: 0.001;
+    width: 104px;
   }
   .DropDownWrapperHover{
     height: 50%;
@@ -66,12 +67,10 @@
     margin-bottom: 8px;
   }
   .word {
+    font-size: 24px;
     color: blue;
     font-weight: 600;
     cursor: pointer;
-  }
-  .word:hover {
-    text-decoration: underline;
   }
   .Formats {
     font-size: 15px;
