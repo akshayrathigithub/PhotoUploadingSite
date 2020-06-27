@@ -69,12 +69,16 @@
       ></div>
     </div>
   </div>
-  <div class="PreviewWrapper">
+  <div class="PreviewWrapper" >
     <div
       class="Photos"
       draggable="true"
       (dragstart)="onDragStart($event)"
-      (dragend)="onDragEnd($event)" *ngFor="let item of [].constructor(12)"
+      (drop)="PhotoDropped($event)"
+      (dragover)="onDragOver($event)"
+      (dragenter)="onPhotoDragEnter($event)"
+      (dragleave)="onPhotoDragLeave($event)"
+      (dragend)="onDragEnd($event)" #Photo *ngFor="let item of [].constructor(12)"
     ></div>
   </div>
 </div>

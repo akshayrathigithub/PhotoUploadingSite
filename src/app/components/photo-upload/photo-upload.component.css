@@ -129,7 +129,6 @@
     height: auto;
     background-color: rgb(177, 171, 171);
     border-radius: 15px;
-    grid-template-rows: repeat(auto, 100%);
     grid-template-columns: repeat(5, auto);
     row-gap: 0.5rem;
   }
