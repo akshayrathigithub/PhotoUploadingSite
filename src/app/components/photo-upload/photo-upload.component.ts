@@ -50,14 +50,16 @@ export class PhotoUploadComponent implements OnInit {
   }
   onPhotoDragEnter(e) {
     if(e.target != this.DraggedPhoto){
+      this.DroppedOn = e.target
       this.DroppedOnProperty = e.target.style.backgroundColor
-      console.log(this.DroppedOnProperty)
       this.renderer.setStyle(e.target, 'backgroundColor', this.DraggedPhotoProperty)
+      this.renderer.setStyle(this.DraggedPhoto, 'backgroundColor', this.DroppedOnProperty)
     }
   }
   onPhotoDragLeave(e: Event) {
     if(e.target != this.DraggedPhoto){
-      this.renderer.setStyle(e.target, 'backgroundColor', this.DroppedOnProperty)
+      this.renderer.setStyle(this.DroppedOn, 'backgroundColor', this.DroppedOnProperty)
+      this.renderer.setStyle(this.DraggedPhoto, 'backgroundColor', this.DraggedPhotoProperty)
     }
   }
 }
