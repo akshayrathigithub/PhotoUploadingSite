@@ -78,7 +78,11 @@
       (dragover)="onDragOver($event)"
       (dragenter)="onPhotoDragEnter($event)"
       (dragleave)="onPhotoDragLeave($event)"
-      (dragend)="onDragEnd($event)" #Photo *ngFor="let item of [].constructor(12)"
-    ></div>
+      (dragend)="onDragEnd($event)" *ngFor="let item of [].constructor(10)"
+    >
+    <div class="checkMark">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
   </div>
 </div>

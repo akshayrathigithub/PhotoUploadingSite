@@ -129,14 +129,30 @@
     height: auto;
     background-color: rgb(177, 171, 171);
     border-radius: 15px;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(4, auto);
     row-gap: 0.5rem;
+    column-gap: 0.5rem;
+    padding: 10px;
   }
   .Photos{
-    width: 10rem;
+    width: 100%;
     height: 10rem;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: rgba(86, 50, 122, 0.541);
+    position: relative;
+  }
+  .checkMark{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 2%;
+    left: 84%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 }
 
