@@ -6,6 +6,8 @@ import { Component, OnInit, Renderer2 } from "@angular/core"
   styleUrls: ["./photo-upload.component.css"],
 })
 export class PhotoUploadComponent implements OnInit {
+  File: any;
+  FileName: string;
   FileDragged: boolean = false
   FileDropped: boolean = false
   DraggedPhoto: any
@@ -79,5 +81,13 @@ export class PhotoUploadComponent implements OnInit {
       this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DraggedPhotoProperty)
       this.flag = true
     }
+  }
+  SelectFile(e){
+    console.log(e.target.files)
+    this.FileName = e.target.files[0].name
+    this.File =  e.target.files[0]
+  }
+  Upload(){
+    let FileId = `${this.FileName}-${this.File.lastModified}`
   }
 }
