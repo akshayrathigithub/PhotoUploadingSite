@@ -16,16 +16,16 @@
     >
       <div
         #Picture
+        *ngIf="item.photos.length >= 5; else SecondDiv"
         [ngStyle]="{
           display: 'flex',
-          width: item.photos.length * 100 + '%',
+          width: (item.photos.length * 100) + '%',
           height: '100%',
           position: 'absolute',
           'flex-direction': 'row',
-          transform: 'translateX(0%)',
+          transform: 'translate3d(0%,0%,0px)',
           transition: 'all 1.2s ease-in-out'
         }"
-        *ngIf="item.photos.length >= 3; else SecondDiv"
       >
         <div
           *ngFor="let photo of item.photos"
@@ -43,10 +43,10 @@
           [ngStyle]="{
             display: 'flex',
             width: '100%',
-            height: item.photos.length * 100 + '%',
+            height: (item.photos.length * 100) + '%',
             position: 'absolute',
             'flex-direction': 'column',
-            transform: 'translateY(0%)',
+            transform: 'translate3d(0%,0%,0px)',
             transition: 'all 1.5s ease-in-out'
           }"
         >
