@@ -42,7 +42,6 @@ export class PhotoUploadComponent implements OnInit {
     e.preventDefault()
     this.FileDropped = true
     this.FileDragged = false
-    console.log("Drop")
   }
   onDragOver(e: Event) {
     e.preventDefault()
