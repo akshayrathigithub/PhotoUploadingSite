@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       Ind: "7/15/13/18",
       photos: ["#911e7e", "#3f16d9", "#0f525f", "#ac7c0a", "#b4c086", "#c9d730", "#30cc49"],
     },
-    { Ind: "7/18/13/21", photos: ["#1350ce", "#10e5b1", "#fff4d7", "#cb2582", "#ce00be"] },
+    { Ind: "7/18/13/21", photos: ["#1350ce", "#10e5b1", "#fff400", "#cb2582", "#ce00be"] },
   ]
 
   constructor(private renderer: Renderer2) {}
@@ -72,7 +72,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
           let Proposed = ""
           if (height > width) {
             let PresentY = parseFloat(Dir.replace("%,0px)", "").replace("0%,", ""))
-            if (PresentY === limit) {
+            console.log(PresentY, limit)
+            if (Math.round(PresentY) >= Math.round(limit)) {
               Proposed = `translate3d(0%,0%,0px)`
             } else {
               Proposed = `translate3d(0%,${parseFloat(
@@ -81,7 +82,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
             }
           } else {
             let PresentX = parseFloat(Dir.replace(",0%,0px)", "").replace("%", ""))
-            if (PresentX === limit) {
+            console.log(PresentX, limit)
+            if (Math.round(PresentX) >= Math.round(limit)) {
               Proposed = `translate3d(0%,0%,0px)`
             } else {
               Proposed = `translate3d(${parseFloat(
@@ -141,13 +143,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     const quickTimeout = (Type: string, Limit: number, TC: number, currVal: number) => {
       setTimeout(() => {
-        /* 
-        this part of code has bug check the console for more detail
-        */
-
         let value = parseFloat((currVal - 100 / TC).toFixed(2))
-        console.log(limit, currVal)
-        if (currVal <= Limit || this.currentPic === -1) {
+        if (Math.round(currVal) <= Math.round(Limit) || this.currentPic === -1) {
           null
         } else {
           if (Type === "X" && this.currentPic >= 0) {
@@ -178,14 +175,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   MouseMoved(ID: number, stat: string) {
     if (stat === "Enter") {
-      this.currentPic = ID
-      this.QuickSlider()
+      setTimeout(() => {
+        this.currentPic = ID
+        this.QuickSlider()
+      }, 500)
     } else {
-      this.renderer.setStyle(
-        this.linkRefs._results[ID].nativeElement,
-        "transform",
-        "translate3d(0%,0%,0px)"
-      )
+      console.log("left")
       this.currentPic = -1
     }
   }
