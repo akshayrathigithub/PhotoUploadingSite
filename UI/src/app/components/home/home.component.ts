@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren("Picture") linkRefs: { _results: { nativeElement: any }[] }
   currentPic: number
   LargePhoto: boolean = true
+  MainInd: number
+  PicInd: number
   Array = [
     { Ind: "1/1/6/4", photos: ["#63b598", "#ce7d78", "#ea9e70", "#a48a9e", "#c6e1e8"] },
     { Ind: "1/4/6/7", photos: ["#f205e6", "#1c0365", "#14a9ad", "#4ca2f9", "#a4e43f"] },
@@ -184,6 +186,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
   PhotoClicked(ID: number, id: number){
+    this.MainInd = ID
+    this.PicInd = id
     this.LargePhoto = !this.LargePhoto
     console.log(ID, "photo Clicked", id)
   }

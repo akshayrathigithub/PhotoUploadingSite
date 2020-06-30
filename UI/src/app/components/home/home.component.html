@@ -4,8 +4,7 @@
       position: 'absolute',
       width: LargePhoto ? '0%' : '70%',
       height: LargePhoto ? '0%' : '70%',
-      'background-color': 'red',
-      opacity: '0.4',
+      'background-color': LargePhoto ? 'transparent' : Array[MainInd].photos[PicInd],
       'z-index': '1',
       transition: 'all 0.5s ease-in-out'
     }"
