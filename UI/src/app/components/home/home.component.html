@@ -1,57 +1,47 @@
-<div id="Grid">
-  <ng-container *ngFor="let item of Array; let i = index">
-    <div
-      (mouseenter)="MouseMoved(i, 'Enter')"
-      (mouseleave)="MouseMoved(i, 'Leave')"
-      [ngStyle]="{
-        overflow: 'hidden',
-        width: '100%',
-        height: '100%',
-        'grid-area': item.Ind,
-        position: 'relative',
-        cursor: 'pointer',
-        opacity: 0,
-        transition: 'all 1.5s ease-in-out'
-      }"
-    >
+<div id="GridWrapper">
+  <div
+    [ngStyle]="{
+      position: 'absolute',
+      width: LargePhoto ? '0%' : '70%',
+      height: LargePhoto ? '0%' : '70%',
+      'background-color': 'red',
+      opacity: '0.4',
+      'z-index': '1',
+      transition: 'all 0.5s ease-in-out'
+    }"
+  ></div>
+  <div id="Grid">
+    <ng-container *ngFor="let item of Array; let i = index">
       <div
-        #Picture
-        *ngIf="item.photos.length >= 5; else SecondDiv"
+        (mouseenter)="MouseMoved(i, 'Enter')"
+        (mouseleave)="MouseMoved(i, 'Leave')"
         [ngStyle]="{
-          display: 'flex',
-          width: (item.photos.length * 100) + '%',
+          overflow: 'hidden',
+          width: '100%',
           height: '100%',
-          position: 'absolute',
-          'flex-direction': 'row',
-          transform: 'translate3d(0%,0%,0px)',
-          transition: 'all 1.0s ease-in-out'
+          'grid-area': item.Ind,
+          position: 'relative',
+          cursor: 'pointer',
+          opacity: 0,
+          transition: 'all 1.5s ease-in-out'
         }"
       >
         <div
-          *ngFor="let photo of item.photos"
-          [ngStyle]="{
-            width: '100%',
-            height: '100%',
-            'background-color': photo,
-            position: 'relative'
-          }"
-        ></div>
-      </div>
-      <ng-template #SecondDiv>
-        <div
           #Picture
+          *ngIf="item.photos.length >= 5; else SecondDiv"
           [ngStyle]="{
             display: 'flex',
-            width: '100%',
-            height: (item.photos.length * 100) + '%',
+            width: item.photos.length * 100 + '%',
+            height: '100%',
             position: 'absolute',
-            'flex-direction': 'column',
+            'flex-direction': 'row',
             transform: 'translate3d(0%,0%,0px)',
             transition: 'all 1.0s ease-in-out'
           }"
         >
           <div
-            *ngFor="let photo of item.photos"
+            (click)="PhotoClicked(i, ind)"
+            *ngFor="let photo of item.photos; let ind = index"
             [ngStyle]="{
               width: '100%',
               height: '100%',
@@ -60,7 +50,32 @@
             }"
           ></div>
         </div>
-      </ng-template>
-    </div>
-  </ng-container>
+        <ng-template #SecondDiv>
+          <div
+            #Picture
+            [ngStyle]="{
+              display: 'flex',
+              width: '100%',
+              height: item.photos.length * 100 + '%',
+              position: 'absolute',
+              'flex-direction': 'column',
+              transform: 'translate3d(0%,0%,0px)',
+              transition: 'all 1.0s ease-in-out'
+            }"
+          >
+            <div
+              (click)="PhotoClicked(i, ind)"
+              *ngFor="let photo of item.photos; let ind = index"
+              [ngStyle]="{
+                width: '100%',
+                height: '100%',
+                'background-color': photo,
+                position: 'relative'
+              }"
+            ></div>
+          </div>
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
 </div>

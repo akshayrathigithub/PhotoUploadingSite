@@ -16,6 +16,7 @@ import {
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren("Picture") linkRefs: { _results: { nativeElement: any }[] }
   currentPic: number
+  LargePhoto: boolean = true
   Array = [
     { Ind: "1/1/6/4", photos: ["#63b598", "#ce7d78", "#ea9e70", "#a48a9e", "#c6e1e8"] },
     { Ind: "1/4/6/7", photos: ["#f205e6", "#1c0365", "#14a9ad", "#4ca2f9", "#a4e43f"] },
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min)) + min    //The maximum is exclusive and the minimum is inclusive
   }
 
   RandomPhotoSlider(Num: number) {
@@ -72,8 +73,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           let Proposed = ""
           if (height > width) {
             let PresentY = parseFloat(Dir.replace("%,0px)", "").replace("0%,", ""))
-            console.log(PresentY, limit)
-            if (Math.round(PresentY) >= Math.round(limit)) {
+            if (Math.round(PresentY) === Math.round(limit)) {
               Proposed = `translate3d(0%,0%,0px)`
             } else {
               Proposed = `translate3d(0%,${parseFloat(
@@ -82,8 +82,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             }
           } else {
             let PresentX = parseFloat(Dir.replace(",0%,0px)", "").replace("%", ""))
-            console.log(PresentX, limit)
-            if (Math.round(PresentX) >= Math.round(limit)) {
+            if (Math.round(PresentX) === Math.round(limit)) {
               Proposed = `translate3d(0%,0%,0px)`
             } else {
               Proposed = `translate3d(${parseFloat(
@@ -183,5 +182,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       console.log("left")
       this.currentPic = -1
     }
+  }
+  PhotoClicked(ID: number, id: number){
+    this.LargePhoto = !this.LargePhoto
+    console.log(ID, "photo Clicked", id)
   }
 }
