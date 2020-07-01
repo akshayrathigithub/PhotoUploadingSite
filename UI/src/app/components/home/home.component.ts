@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min)
     max = Math.floor(max)
-    return Math.floor(Math.random() * (max - min)) + min    //The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
   }
 
   RandomPhotoSlider(Num: number) {
@@ -175,7 +175,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   MouseMoved(ID: number, stat: string) {
-    if (stat === "Enter") {
+    if (stat === "Enter" && this.LargePhoto) {
       setTimeout(() => {
         this.currentPic = ID
         this.QuickSlider()
@@ -185,10 +185,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.currentPic = -1
     }
   }
-  PhotoClicked(ID: number, id: number){
+  PhotoClicked(ID: number, id: number, el: any) {
     this.MainInd = ID
     this.PicInd = id
+    if(this.LargePhoto){
+      this.renderer.setStyle(el, "filter", "blur(4px)")
+    }else{
+      this.renderer.setStyle(el, "filter", "none")
+    }
     this.LargePhoto = !this.LargePhoto
-    console.log(ID, "photo Clicked", id)
+    console.log(ID, "photo Clicked", id, el)
   }
 }

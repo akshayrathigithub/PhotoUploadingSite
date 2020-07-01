@@ -1,16 +1,50 @@
 <div id="GridWrapper">
-  <div
-    [ngStyle]="{
-      position: 'absolute',
-      width: LargePhoto ? '0%' : '70%',
-      height: LargePhoto ? '0%' : '70%',
-      'background-color': LargePhoto ? 'transparent' : Array[MainInd].photos[PicInd],
-      'z-index': '1',
-      'border-radius': '5px',
-      transition: 'all 0.8s ease-in-out'
-    }"
-  ></div>
-  <div id="Grid">
+  <ng-container *ngIf="!LargePhoto">
+    <div
+      [ngStyle]="{
+        position: 'absolute',
+        width: '75%',
+        height: '75%',
+        'z-index': '1',
+        'border-radius': '5px',
+        display: 'flex', 
+        'justify-content': 'center',
+        'align-items': 'center',
+        'overflow': 'hidden'
+      }"
+    >
+      <div
+        [ngStyle]="{
+          position: 'absolute',
+          width: (Array[MainInd].photos.length * 100) + '%',
+          height: '100%',
+          transition: 'all 0.8s ease-in-out',
+          display: 'flex',
+          'flex-direction': 'row'
+        }"
+      >
+        <div
+          *ngFor="let pic of Array[MainInd].photos"
+          [ngStyle]="{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            'background-color': pic
+          }"
+        ></div>
+      </div>
+      <!-- <div class="Icon right">
+      <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="Icon left">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="Icon close">
+      <i class="fas fa-times"></i>
+    </div> -->
+    </div>
+  </ng-container>
+  <div id="Grid" #Grid>
     <ng-container *ngFor="let item of Array; let i = index">
       <div
         (mouseenter)="MouseMoved(i, 'Enter')"
@@ -40,7 +74,7 @@
           }"
         >
           <div
-            (click)="PhotoClicked(i, ind)"
+            (click)="PhotoClicked(i, ind, Grid)"
             *ngFor="let photo of item.photos; let ind = index"
             [ngStyle]="{
               width: '100%',
@@ -64,7 +98,7 @@
             }"
           >
             <div
-              (click)="PhotoClicked(i, ind)"
+              (click)="PhotoClicked(i, ind, Grid)"
               *ngFor="let photo of item.photos; let ind = index"
               [ngStyle]="{
                 width: '100%',
