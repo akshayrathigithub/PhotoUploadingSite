@@ -23,6 +23,20 @@
   }
   .Icon{
     position: absolute;
+    font-size: 60px;
+    color: #f2f2f2;
+    cursor: pointer;
+  }
+  .right{
+    right: 3%;
+  }
+  .left{
+    left: 3%;
+  }
+  .close{
+    right: 2%;
+    top: 1%;
+    font-size: 40px;
   }
 }
 

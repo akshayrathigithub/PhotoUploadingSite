@@ -17,8 +17,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChildren("Picture") linkRefs: { _results: { nativeElement: any }[] }
   currentPic: number
   LargePhoto: boolean = true
-  MainInd: number
+  MainInd: number = 0
   PicInd: number
+  GridDiv: any
   Array = [
     { Ind: "1/1/6/4", photos: ["#63b598", "#ce7d78", "#ea9e70", "#a48a9e", "#c6e1e8"] },
     { Ind: "1/4/6/7", photos: ["#f205e6", "#1c0365", "#14a9ad", "#4ca2f9", "#a4e43f"] },
@@ -185,15 +186,42 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.currentPic = -1
     }
   }
-  PhotoClicked(ID: number, id: number, el: any) {
+  PhotoClicked(ID: number, id: number, gridDiv: any) {
     this.MainInd = ID
     this.PicInd = id
-    if(this.LargePhoto){
-      this.renderer.setStyle(el, "filter", "blur(4px)")
-    }else{
-      this.renderer.setStyle(el, "filter", "none")
+    this.GridDiv = gridDiv
+    if (this.LargePhoto) {
+      // this.renderer.setStyle(gridDiv, "filter", "blur(4px)")
+      this.renderer.setStyle(gridDiv, "opacity", "0.2")
+    } else {
+      // this.renderer.setStyle(gridDiv, "filter", "none")
+      this.renderer.setStyle(gridDiv, "opacity", "1")
     }
     this.LargePhoto = !this.LargePhoto
-    console.log(ID, "photo Clicked", id, el)
+    console.log(ID, "photo Clicked", id, gridDiv)
+  }
+  SlideAction(action: string, previewDiv: any) {
+    let limit = this.Array[this.MainInd].photos.length
+    if (action === "right") {
+      if (this.PicInd === limit) {
+        this.renderer.setStyle(previewDiv, "transform", "translate3d(0%, 0%, 0px)")
+        this.PicInd = 0
+      } else {
+        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${this.PicInd*100}%, 0%, 0px)`)
+        this.PicInd = this.PicInd + 1
+      }
+    } else if (action === "left") {
+      if(this.PicInd === 0){
+        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${(limit-1)*100}%, 0%, 0px)`)
+        this.PicInd = limit - 1
+      }else{
+        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${this.PicInd*100}%, 0%, 0px)`)
+        this.PicInd = this.PicInd - 1
+      }
+    } else {
+      this.LargePhoto = !this.LargePhoto
+      this.renderer.setStyle(this.GridDiv, "filter", "none")
+    }
+    console.log(this.PicInd, limit)
   }
 }

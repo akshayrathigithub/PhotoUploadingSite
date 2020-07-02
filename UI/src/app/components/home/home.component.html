@@ -1,49 +1,50 @@
 <div id="GridWrapper">
-  <ng-container *ngIf="!LargePhoto">
+  <div
+    [ngStyle]="{
+      position: 'absolute',
+      width: !LargePhoto ? '75%' : '0%',
+      height: !LargePhoto ? '75%' : '0%',
+      'z-index': '1',
+      'border-radius': '5px',
+      display: 'flex',
+      transition: 'all 1.0s ease-in-out',
+      'justify-content': 'center',
+      'align-items': 'center',
+      overflow: 'hidden'
+    }"
+  >
     <div
+    #Preview
       [ngStyle]="{
         position: 'absolute',
-        width: '75%',
-        height: '75%',
-        'z-index': '1',
-        'border-radius': '5px',
-        display: 'flex', 
-        'justify-content': 'center',
-        'align-items': 'center',
-        'overflow': 'hidden'
+        width: Array[MainInd].photos.length * 100 + '%',
+        height: '100%',
+        display: 'flex',
+        'flex-direction': 'row',
+        transition: 'all 0.8s ease-in-out',
+        'transform': 'translate3d(0%,0%,0px)'
       }"
     >
       <div
+        *ngFor="let pic of Array[MainInd].photos"
         [ngStyle]="{
-          position: 'absolute',
-          width: (Array[MainInd].photos.length * 100) + '%',
+          position: 'relative',
+          width: '100%',
           height: '100%',
-          transition: 'all 0.8s ease-in-out',
-          display: 'flex',
-          'flex-direction': 'row'
+          'background-color': pic
         }"
-      >
-        <div
-          *ngFor="let pic of Array[MainInd].photos"
-          [ngStyle]="{
-            position: 'relative',
-            width: '100%',
-            height: '100%',
-            'background-color': pic
-          }"
-        ></div>
-      </div>
-      <!-- <div class="Icon right">
+      ></div>
+    </div>
+    <div class="Icon right" (click)="SlideAction('right', Preview)">
       <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="Icon left">
+    <div class="Icon left" (click)="SlideAction('left', Preview)">
       <i class="fas fa-chevron-left"></i>
     </div>
-    <div class="Icon close">
+    <div class="Icon close" (click)="SlideAction('close', Preview)">
       <i class="fas fa-times"></i>
-    </div> -->
     </div>
-  </ng-container>
+  </div>
   <div id="Grid" #Grid>
     <ng-container *ngFor="let item of Array; let i = index">
       <div
