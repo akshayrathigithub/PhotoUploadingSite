@@ -131,10 +131,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     let width = parseInt(
       this.linkRefs._results[this.currentPic].nativeElement.style.width.replace("%", "")
     )
-    let Dir = this.linkRefs._results[this.currentPic].nativeElement.style.transform.replace(
-      "translate3d(",
-      ""
-    )
     const totalChildren = this.linkRefs._results[this.currentPic].nativeElement.children.length
     let limit = parseFloat((-100 + 100 / totalChildren).toFixed(2))
     this.renderer.setStyle(
@@ -191,37 +187,56 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.PicInd = id
     this.GridDiv = gridDiv
     if (this.LargePhoto) {
-      // this.renderer.setStyle(gridDiv, "filter", "blur(4px)")
-      this.renderer.setStyle(gridDiv, "opacity", "0.2")
+      this.renderer.setStyle(gridDiv, "filter", "blur(4px)")
     } else {
-      // this.renderer.setStyle(gridDiv, "filter", "none")
-      this.renderer.setStyle(gridDiv, "opacity", "1")
+      this.renderer.setStyle(gridDiv, "filter", "none")
     }
     this.LargePhoto = !this.LargePhoto
     console.log(ID, "photo Clicked", id, gridDiv)
   }
   SlideAction(action: string, previewDiv: any) {
-    let limit = this.Array[this.MainInd].photos.length
+    let limit = this.Array[this.MainInd].photos.length - 1
+    let CurrX = parseFloat(
+      previewDiv.style.transform
+        .replace("translate3d(", "")
+        .replace(",0%,0px)", "")
+        .replace("%", "")
+    )
+    let MovingPart = 100 / (limit + 1)
     if (action === "right") {
-      if (this.PicInd === limit) {
+      if (this.PicInd >= limit) {
         this.renderer.setStyle(previewDiv, "transform", "translate3d(0%, 0%, 0px)")
         this.PicInd = 0
       } else {
-        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${this.PicInd*100}%, 0%, 0px)`)
+        this.renderer.setStyle(
+          previewDiv,
+          "transform",
+          `translate3d(${CurrX - MovingPart}%, 0%, 0px)`
+        )
         this.PicInd = this.PicInd + 1
       }
     } else if (action === "left") {
-      if(this.PicInd === 0){
-        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${(limit-1)*100}%, 0%, 0px)`)
-        this.PicInd = limit - 1
-      }else{
-        this.renderer.setStyle(previewDiv, "transform", `translate3d(-${this.PicInd*100}%, 0%, 0px)`)
+      if (this.PicInd <= 0) {
+        this.renderer.setStyle(
+          previewDiv,
+          "transform",
+          `translate3d(-${limit * MovingPart}%, 0%, 0px)`
+        )
+        this.PicInd = limit
+      } else {
+        this.renderer.setStyle(
+          previewDiv,
+          "transform",
+          `translate3d(${CurrX + MovingPart}%, 0%, 0px)`
+        )
         this.PicInd = this.PicInd - 1
       }
     } else {
       this.LargePhoto = !this.LargePhoto
       this.renderer.setStyle(this.GridDiv, "filter", "none")
+      setTimeout(()=>{
+        this.renderer.setStyle(previewDiv, "transform", "translate3d(0%, 0%, 0px)")
+      },1200)
     }
-    console.log(this.PicInd, limit)
   }
 }

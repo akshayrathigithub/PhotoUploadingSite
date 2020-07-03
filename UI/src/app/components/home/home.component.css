@@ -28,9 +28,11 @@
     cursor: pointer;
   }
   .right{
+    top: 50%;
     right: 3%;
   }
   .left{
+    top: 50%;
     left: 3%;
   }
   .close{
