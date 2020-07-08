@@ -6,14 +6,14 @@ import { Component, OnInit, Renderer2 } from "@angular/core"
   styleUrls: ["./photo-upload.component.css"],
 })
 export class PhotoUploadComponent implements OnInit {
-  File: any;
-  FileName: string;
+  File: any
+  FileName: string
   FileDragged: boolean = false
   FileDropped: boolean = false
   DraggedPhoto: any
-  DraggedPhotoProperty: string
+  DraggedPhotoThumbnail: string
   DroppedOn: any
-  DroppedOnProperty: string
+  DroppedOnThumbnail: string
   flag: boolean = true
   ColorArr = [
     "#63b598",
@@ -38,7 +38,7 @@ export class PhotoUploadComponent implements OnInit {
 
   onDragStart(e) {
     this.DraggedPhoto = e.target
-    this.DraggedPhotoProperty = e.target.style.backgroundColor
+    this.DraggedPhotoThumbnail = e.target.style.backgroundColor
   }
   onDrop(e) {
     e.preventDefault()
@@ -61,33 +61,35 @@ export class PhotoUploadComponent implements OnInit {
     e.preventDefault()
     this.DroppedOn = e.target
     if (!this.flag && this.DroppedOn != this.DraggedPhoto) {
-      this.renderer.setStyle(this.DroppedOn, "backgroundColor", this.DraggedPhotoProperty)
-      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DroppedOnProperty)
+      this.renderer.setStyle(this.DroppedOn, "backgroundColor", this.DraggedPhotoThumbnail)
+      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DroppedOnThumbnail)
       this.flag = true
     }
   }
   onPhotoDragEnter(e) {
     if (this.flag && e.target != this.DraggedPhoto) {
+      console.log("photo Entered", this.flag, "expected flag is true")
       this.DroppedOn = e.target
-      this.DroppedOnProperty = e.target.style.backgroundColor
-      this.renderer.setStyle(e.target, "backgroundColor", this.DraggedPhotoProperty)
-      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DroppedOnProperty)
+      this.DroppedOnThumbnail = e.target.style.backgroundColor
+      this.renderer.setStyle(e.target, "backgroundColor", this.DraggedPhotoThumbnail)
+      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DroppedOnThumbnail)
       this.flag = false
     }
   }
   onPhotoDragLeave(e: Event) {
-    if ( !this.flag && this.DroppedOn != this.DraggedPhoto) {
-      this.renderer.setStyle(this.DroppedOn, "backgroundColor", this.DroppedOnProperty)
-      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DraggedPhotoProperty)
+    if (!this.flag && this.DroppedOn != this.DraggedPhoto) {
+      console.log("photo left", this.flag, "expected flag is false")
+      this.renderer.setStyle(this.DroppedOn, "backgroundColor", this.DroppedOnThumbnail)
+      this.renderer.setStyle(this.DraggedPhoto, "backgroundColor", this.DraggedPhotoThumbnail)
       this.flag = true
     }
   }
-  SelectFile(e){
+  SelectFile(e) {
     console.log(e.target.files)
     this.FileName = e.target.files[0].name
-    this.File =  e.target.files[0]
+    this.File = e.target.files[0]
   }
-  Upload(){
+  Upload() {
     let FileId = `${this.FileName}-${this.File.lastModified}`
   }
 }
