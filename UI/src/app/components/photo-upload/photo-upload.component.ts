@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from "@angular/core"
+import { UploadService } from "src/app/services/upload.service"
 
 @Component({
   selector: "app-photo-upload",
@@ -32,7 +33,9 @@ export class PhotoUploadComponent implements OnInit {
     "#983f7a",
     "#ea24a3",
   ]
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private FileUploadService: UploadService) {
+    this.FileUploadService.getStatus()
+  }
 
   ngOnInit(): void {}
 
@@ -41,6 +44,7 @@ export class PhotoUploadComponent implements OnInit {
     this.DraggedPhotoThumbnail = e.target.style.backgroundColor
   }
   onDrop(e) {
+    console.log(e.target)
     e.preventDefault()
     this.FileDropped = true
     this.FileDragged = false
