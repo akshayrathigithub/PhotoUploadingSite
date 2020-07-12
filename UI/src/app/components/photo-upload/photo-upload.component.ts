@@ -44,7 +44,7 @@ export class PhotoUploadComponent implements OnInit {
     this.DraggedPhotoThumbnail = e.target.style.backgroundColor
   }
   onDrop(e) {
-    console.log(e.target)
+    console.log(e.dataTransfer.files)
     e.preventDefault()
     this.FileDropped = true
     this.FileDragged = false
@@ -89,9 +89,13 @@ export class PhotoUploadComponent implements OnInit {
     }
   }
   SelectFile(e) {
-    console.log(e.target.files)
     this.FileName = e.target.files[0].name
     this.File = e.target.files[0]
+    if (this.File.type.match("image.*")) {
+      console.log("image file")
+    } else {
+      console.log("Not a image file")
+    }
   }
   Upload() {
     let FileId = `${this.FileName}-${this.File.lastModified}`

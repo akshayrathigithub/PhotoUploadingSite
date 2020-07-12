@@ -7,7 +7,13 @@
       (dragenter)="onDragEnter($event)"
       (dragleave)="onDragLeave($event)"
     >
-      <input type="file" id="fileSelector" (change)="SelectFile($event)" />
+      <input
+        type="file"
+        id="fileSelector"
+        (change)="SelectFile($event)"
+        accept="image/*"
+        multiple
+      />
     </div>
     <div class="DropDown">
       <div class="Image">
