@@ -7,7 +7,7 @@ import { UploadService } from "src/app/services/upload.service"
   styleUrls: ["./photo-upload.component.css"],
 })
 export class PhotoUploadComponent implements OnInit {
-  File: any
+  Files: any
   FileName: string
   FileDragged: boolean = false
   FileDropped: boolean = false
@@ -90,14 +90,18 @@ export class PhotoUploadComponent implements OnInit {
   }
   SelectFile(e) {
     this.FileName = e.target.files[0].name
-    this.File = e.target.files[0]
-    if (this.File.type.match("image.*")) {
-      console.log("image file")
-    } else {
-      console.log("Not a image file")
+    this.Files = e.target.files
+    let NoOfFiles = this.Files.length
+    console.log(this.Files.length)
+    for (let i = 0; i < NoOfFiles; i++) {
+      if (this.Files[i].type.match("image.*")) {
+        console.log("image file")
+      } else {
+        console.log("Not a image file", this.Files[i].type)
+      }
     }
   }
   Upload() {
-    let FileId = `${this.FileName}-${this.File.lastModified}`
+    // let FileId = `${this.FileName}-${this.File.lastModified}`
   }
 }
